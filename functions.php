@@ -252,13 +252,6 @@ function tambahPesanan($data) {
   $Total_pesanan = $data['Total_pesanan'];
   $Tgl_pesanan = $data['Tgl_pesanan'];
 
-  //upload gambar
-  // $Foto_produk = upload();
-  // if(!$Foto_produk){
-  //   return false;
-  // }
-
-//make the insert syntax
 global $conn;
 $result = mysqli_query($conn, 
     "SELECT AUTO_INCREMENT

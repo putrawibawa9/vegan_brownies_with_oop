@@ -4,6 +4,11 @@ require_once '../classes/classPesanan.php';
 
 $pesanan = new Pesanan;
 $Id_pesanan = $_GET['Id_pesanan'];
+$Id_produk = $_GET['Id_produk'];
+
+$minstock = new Pesanan;
+
+$minstock->minStock($Id_produk);
 
 if ($pesanan->konfirmasiPesanan($Id_pesanan)){
     echo "<script>

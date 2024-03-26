@@ -24,7 +24,14 @@ class Pesanan extends Connection\Connect{
             return $result;
         }
 
+        function minStock( $Id_produk ){
+            $conn = $this->getConnection();
+            $query    = "UPDATE produk SET Stok_produk = Stok_produk - 1 WHERE Id_produk = '$Id_produk'";
+            $result = $conn->exec($query);
+        }
 }
+
+
 
 
 

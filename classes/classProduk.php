@@ -8,7 +8,7 @@ class Produk extends Connect{
     
     public function readProduk(){
         $conn = $this->getConnection();
-        $query = "SELECT * FROM produk JOIN kategori ON produk.id_kategori = kategori.id_kategori";  
+        $query = "SELECT * FROM produk";  
         $result = $conn->query($query);
         $burger = $result->fetchAll();
         return $burger;

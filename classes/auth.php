@@ -94,6 +94,40 @@ public function loginAdmin ($Username, $Password){
     
         return $result;
     }
+    public function registerUser($data){
+        $connection = $this->getConnection();
+
+        $Password = $data["Password"];
+        $Nama_pelanggan = $data["Nama_pelanggan"];
+        $No_pelanggan = $data["No_pelanggan"];
+        $Alamat_pelanggan = $data["Alamat_pelanggan"];
+    
+        // Check if the username already exists
+        $query = "SELECT COUNT(*) as count FROM pelanggan WHERE Nama_pelanggan = ?";
+        $stmt = $connection->prepare($query);
+        $stmt->execute([$Nama_pelanggan]);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        // If the count is greater than 0, it means the username already exists
+        if($row['count'] > 0) {
+            echo "<script>
+            alert('Username is already been made');
+            document.location.href = 'registrasi.php';
+      </script>";
+      return false;
+        }
+    
+        // If username doesn't exist, proceed with insertion
+
+        $query = "INSERT INTO pelanggan VALUES ('',?,?,?,?)";
+      $stmt = $connection->prepare($query);
+        $stmt->bindParam(1,$Password);
+        $stmt->bindParam(2,$Nama_pelanggan);
+        $stmt->bindParam(3,$No_pelanggan);
+        $stmt->bindParam(4,$Alamat_pelanggan);
+        $stmt->execute();
+        return true;
+    }
 
 
 public function logout(){

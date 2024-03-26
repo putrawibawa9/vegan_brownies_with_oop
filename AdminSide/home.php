@@ -1,15 +1,13 @@
-
 <?php
-//menyimpan data seluruh halaman web
-session_start();
-//memasukan file fungsi untuk mengakses data
-require_once "../functions.php";
 
-//mengambil data dari database
-$produk = query("SELECT * FROM produk");
+use Produk\Produk;
 
+require_once "../classes/classProduk.php";
+
+$produks = new Produk;
 
 
+$produk = $produks->readProduk();
 
 
 ?>

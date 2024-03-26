@@ -145,7 +145,6 @@ footer {
         <?php endforeach; ?>
         </table>
         <footer>
-        <a href="../mobil/index.php">Mobil</a>
         <a href="../logout.php">Keluar</a>
         <p>Hubungi kami di: info@VeganBrowniesBites.com | Phone: (123) 456-7890</p>
     </footer>

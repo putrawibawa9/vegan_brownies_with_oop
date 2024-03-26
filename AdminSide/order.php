@@ -6,6 +6,8 @@ $pesanans = new Pesanan;
 
 $pesanan = $pesanans->viewPesanan();
 
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -98,7 +100,7 @@ $pesanan = $pesanans->viewPesanan();
             <td><?= $row['Stok_produk']; ?></td>
             <td><?= $row['Harga_produk']; ?></td>
             <td>
-               <a href="konfirmasiPesanan.php?Id_pesanan=<?=$row['Id_pesanan'];?>" onclick="return confirm('yakin?');">Konfirmasi Pemesanan</a>
+               <a href="konfirmasiPesanan.php?Id_pesanan=<?=$row['Id_pesanan'];?>&Id_produk=<?=$row["Id_produk"]?>" onclick="return confirm('yakin?');">Konfirmasi Pemesanan</a>
             </td>
             <?php $i++?>
         </tr>

@@ -1,7 +1,7 @@
 <?php
 
 include_once "../classes/auth.php";
-//Mengecek apakah form pendaftaran telah disubmit. Jika ya, maka menggunakan fungsi regristrasiAdmin untuk menambahkan admin baru ke dalam database. Jika berhasil, muncul pesan sukses dan pengguna diarahkan ke halaman login; jika gagal, muncul pesan kesalahan.
+
 if(isset($_POST['register'])){
 
     $Username = $_POST['Username'];

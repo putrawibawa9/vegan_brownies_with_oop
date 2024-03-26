@@ -1,25 +1,22 @@
 <?php
 
-include_once "functions.php";
+include_once "classes/auth.php";
 
 if(isset($_POST['register'])){
 
-    include_once "classes/construct.php";
-    include_once "classes/auth.php";
-
-
     $register = new Auth;
-
-    IF($register->register($_POST)){
+    if ($register->registerUser($_POST)) {
         echo "<script>
-        alert('user baru berhasil ditambahkan');
-        document.location.href = 'index.php';
-      </script>";
-    }else {
+                alert('user baru berhasil ditambahkan');
+                document.location.href = 'index.php';
+              </script>";
+           
+    } else {
         echo "<script>
                 alert('user gagal ditambahkan');
               </script>";
-    }    
+    }
+    
 }
 
 
@@ -100,29 +97,26 @@ if(isset($_POST['register'])){
     <form action="" method="post">
         <ul>
             <li>
-                <label for="Nama_pelanggan">Nama pelanggan :</label>
-                <input type="text" name="Nama_pelanggan" id="Nama_pelanggan" required>
+                <label for="Username">Nama Pelanggan :</label>
+                <input type="text" name="Nama_pelanggan" id="Username" required>
+            </li>
+
+            <li>
+                <label for="Username">No Pelanggan :</label>
+                <input type="text" name="No_pelanggan" id="Username" required>
             </li>
             <li>
-                <label for="Alamat_pelanggan">Alamat :</label>
-                <input type="text" name="Alamat_pelanggan" id="Alamat_pelanggan" required>
+                <label for="Username">Alamat Pelanggan :</label>
+                <input type="text" name="Alamat_pelanggan" id="Username" required>
             </li>
             <li>
                 <label for="password">Password :</label>
-                <input type="password" name="password" id="password" required>
-            </li>
-            <li>
-                <label for="password2">Confirm Password :</label>
-                <input type="password" name="password2" id="password2" required>
+                <input type="password" name="Password" id="password" required>
             </li>
             <li>
                 <button type="submit" name="register">Register</button>
             </li>
         </ul>
-        <div>
-            <p>Sudah punya akun?</p>
-            <a href="index.php">Login </a>
-        </div>
     </form>
 
 </body>
