@@ -45,11 +45,56 @@ public function login ($Nama_pelanggan, $password){
 
     }else{
         $this->error = True;
-        header("Location: ../index.php?error=1");
+        header("Location: index.php?error=1");
         exit();
     };
    
     }
+public function loginAdmin ($Username, $Password){
+
+    $connection = $this->getConnection();
+
+    $query = "SELECT * FROM admin WHERE Username = ? AND Password = ?";
+    $result = $connection->prepare($query);
+
+    $result->execute([$Username, $Password]);
+
+    if($this->row = $result->fetch()){
+        header("Location: home.php");
+
+    }else{
+        $this->error = True;
+        header("Location: login.php?error=1");
+        exit();
+    };
+   
+    }
+
+    public function registerAdmin($Username, $Password){
+        $connection = $this->getConnection();
+    
+        // Check if the username already exists
+        $query = "SELECT COUNT(*) as count FROM admin WHERE Username = ?";
+        $stmt = $connection->prepare($query);
+        $stmt->execute([$Username]);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        // If the count is greater than 0, it means the username already exists
+        if($row['count'] > 0) {
+            echo "<script>
+            alert('Username is already been made');
+            document.location.href = 'registrasi.php';
+      </script>";
+        }
+    
+        // If username doesn't exist, proceed with insertion
+        $query = "INSERT INTO admin (username, password) VALUES (?, ?)";
+        $result = $connection->prepare($query);
+        $result->execute([$Username, $Password]);
+    
+        return $result;
+    }
+
 
 public function logout(){
     header("Location: ../index.php");

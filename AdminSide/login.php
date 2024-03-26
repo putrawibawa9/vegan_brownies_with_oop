@@ -7,36 +7,23 @@ if (isset($_SESSION['login'])){
     header("Location: login.php");
     exit;
 }
-include_once "../functions.php";
 
 if(isset($_POST['login'])){
 
+    include_once "../classes/construct.php";
+    include_once "../classes/auth.php";
+
     $Username = $_POST['Username'];
-    $password = $_POST['password'];
+    $Password = $_POST['Password'];
 
-   $result = mysqli_query($conn,"SELECT * FROM admin WHERE Username = '$Username';");
+    $auth = new Auth;
 
-   //cek username
-   if(mysqli_num_rows($result)===1){
-
-    //cek password
-    $row = mysqli_fetch_assoc($result);
-   if($password == $row['Password']){
-
-
-    $_SESSION['is_auth'] = true;
-    $_SESSION['Nama_pelanggan'] = $row['Nama_pelanggan'];
-    $_SESSION['Id_pelanggan'] = $row['Id_pelanggan'];
-    $_SESSION['Alamat_pelanggan'] = $row['Alamat_pelanggan'];
-    header("Location: home.php");
-    exit;
-   }
-   }
-
-
-   $error = true;
+    $result = $auth->loginAdmin($Username, $Password);
 }
 
+if (isset($_GET['error']) && $_GET['error'] == 1) {
+    $error = $_GET["error"];
+}
 ?>
 
 <!DOCTYPE html>
@@ -124,7 +111,7 @@ if(isset($_POST['login'])){
             </li>
             <li>
                 <label for="password">Password :</label>
-                <input type="password" name="password" id="password">
+                <input type="password" name="Password" id="password">
             </li>
             <li>
                 <button type="submit" name="login">Login</button>

@@ -1,10 +1,6 @@
 <?php
-// session_start();
-// if (!isset($_SESSION['login'])){
-//     header("Location: login.php");
-//     exit;
-// }
-require_once "../functions.php";
+
+require_once "../classes/classProduk.php";
 
 
 
@@ -12,9 +8,10 @@ require_once "../functions.php";
 //check whether the button has been click or not
 if(isset($_POST['submit'])){
 
-    
+    $add = new Produk\Produk;
+
     //check the progress
-    if (tambahProduk($_POST)>0){
+    if ($result =$add->addProduk($_POST)){
         echo "
             <script>
             alert('data berhasil ditambah');
@@ -24,7 +21,7 @@ if(isset($_POST['submit'])){
     }else{
         echo " <script>
         alert('data gagal ditambah');
-        document.location.href = 'index.php';
+        document.location.href = 'home.php';
         </script>
     ";
 
@@ -121,7 +118,7 @@ if(isset($_POST['submit'])){
     </li>
     <li>
         <label for="Stok_produk">Stok Produk :</label>
-        <input type="text" name="Stok_produk" id="Stok_produk" required >
+        <input type="number" name="Stok_produk" id="Stok_produk" required >
     </li>
     <li>
         <label for="Deskripsi_produk">Deskripsi Produk :</label>
@@ -129,7 +126,7 @@ if(isset($_POST['submit'])){
     </li>
     <li>
         <label for="Harga_produk">Harga Produk :</label>
-        <input type="text" name="Harga_produk" id="Harga_produk" required >
+        <input type="number" name="Harga_produk" id="Harga_produk" required >
     </li>
     <button type="submit" name="submit">Post</button>
 </ul>

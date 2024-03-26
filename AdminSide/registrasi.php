@@ -1,10 +1,14 @@
 <?php
 
-include_once "../functions.php";
+include_once "../classes/auth.php";
 //Mengecek apakah form pendaftaran telah disubmit. Jika ya, maka menggunakan fungsi regristrasiAdmin untuk menambahkan admin baru ke dalam database. Jika berhasil, muncul pesan sukses dan pengguna diarahkan ke halaman login; jika gagal, muncul pesan kesalahan.
 if(isset($_POST['register'])){
 
-    if (regristrasiAdmin($_POST) > 0) {
+    $Username = $_POST['Username'];
+    $Password = $_POST['Password'];
+    $register = new Auth;
+
+    if ($register->registerAdmin($Username, $Password)) {
         echo "<script>
                 alert('user baru berhasil ditambahkan');
                 document.location.href = 'login.php';
@@ -101,11 +105,7 @@ if(isset($_POST['register'])){
             </li>
             <li>
                 <label for="password">Password :</label>
-                <input type="password" name="password" id="password" required>
-            </li>
-            <li>
-                <label for="password2">Confirm Password :</label>
-                <input type="password" name="password2" id="password2" required>
+                <input type="password" name="Password" id="password" required>
             </li>
             <li>
                 <button type="submit" name="register">Register</button>

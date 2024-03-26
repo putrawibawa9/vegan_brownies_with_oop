@@ -4,7 +4,7 @@ namespace Produk{
     require_once "construct.php";
     
 
-class Burger extends Connect{
+class Produk extends Connect{
     
     public function readProduk(){
         $conn = $this->getConnection();
@@ -12,6 +12,22 @@ class Burger extends Connect{
         $result = $conn->query($query);
         $burger = $result->fetchAll();
         return $burger;
+        }
+
+    public function readPesanan(){
+        $conn = $this->getConnection();
+        $query = "SELECT * FROM produk JOIN kategori ON produk.id_kategori = kategori.id_kategori";  
+        $result = $conn->query($query);
+        $burger = $result->fetchAll();
+        return $burger;
+        }
+
+        public function viewEachProduk($Id_produk){
+            $conn = $this->getConnection();
+            $query = "SELECT * FROM produk WHERE Id_produk= $Id_produk";
+            $result = $conn->query($query);
+            $kategori = $result->fetch();
+            return $kategori;
         }
 
     public function readTwoTable(){
@@ -69,24 +85,22 @@ class Burger extends Connect{
 
     public function addProduk($data){
         $conn = $this->getConnection();
-        $nama_produk = $data['nama_produk'];
-        $keterangan_produk = $data['keterangan_produk'];
-        $id_kategori = $data['id_kategori'];
-        $gambar = $this->uploadGambar();
-        if (!$gambar) {
+        $Nama_produk = $data['Nama_produk'];
+        $Stok_produk = $data['Stok_produk'];
+        $Deskripsi_produk = $data['Deskripsi_produk'];
+        $Harga_produk = $data['Harga_produk'];
+        $Foto_produk = $this->uploadGambar();
+        if (!$Foto_produk) {
             return false;
         }
-
-
         $query = "INSERT INTO produk VALUES 
-        ('',?,?,?,?)";
-    
+        ('',?,?,?,?,?)";
         $stmt = $conn->prepare($query);
-    
-        $stmt->bindParam(1,$nama_produk);
-        $stmt->bindParam(2,$keterangan_produk);
-        $stmt->bindParam(3,$gambar);
-        $stmt->bindParam(4,$id_kategori);
+        $stmt->bindParam(1,$Nama_produk);
+        $stmt->bindParam(2,$Foto_produk);
+        $stmt->bindParam(3,$Stok_produk);
+        $stmt->bindParam(4,$Deskripsi_produk);
+        $stmt->bindParam(5,$Harga_produk);
         $stmt->execute();
         return true;
     }
@@ -94,41 +108,44 @@ class Burger extends Connect{
 
     public function editProduk($data){
         $conn = $this->getConnection();
-        $nama_produk = $data['nama_produk'];
-        $keterangan_produk = $data['keterangan_produk'];
-        $id_produk = $data['id_produk'];
-        $gambarLama = $data['gambarLama'];
-        $id_kategori = $data['id_kategori'];
+        $Nama_produk = $data['Nama_produk'];
+        $Stok_produk = $data['Stok_produk'];
+        $Deskripsi_produk = $data['Deskripsi_produk'];
+        $Harga_produk = $data['Harga_produk'];
+        $Gambar_lama = $data['Gambar_lama'];
+        $Id_produk = $data['Id_produk'];
 
           //check whether user pick a new image or not
-        if($_FILES['gambar']['error']===4){
-            $gambar = $gambarLama;
+        if($_FILES['Foto_produk']['error']===4){
+            $Foto_produk = $Gambar_lama;
         }else{
-            $gambar = $this->uploadGambar();
+            $Foto_produk = $this->uploadGambar();
         }
         $query = "UPDATE produk SET
-        nama_produk = ?,
-        keterangan_produk = ?,
-        gambar = ?,
-        id_kategori = ?
-        WHERE id_produk = ?
+        Nama_produk = ?,
+        Foto_produk = ?,
+        Stok_produk = ?,
+        Deskripsi_produk = ?,
+        Harga_produk = ?
+        WHERE Id_produk = ?
         ";
              $stmt = $conn->prepare($query);
-                $stmt->bindParam(1,$nama_produk);
-                $stmt->bindParam(2,$keterangan_produk);
-                $stmt->bindParam(3,$gambar);
-                $stmt->bindParam(4,$id_kategori);
-                $stmt->bindParam(5,$id_produk);
+                $stmt->bindParam(1,$Nama_produk);
+                $stmt->bindParam(2,$Foto_produk);
+                $stmt->bindParam(3,$Stok_produk);
+                $stmt->bindParam(4,$Deskripsi_produk);
+                $stmt->bindParam(5,$Harga_produk);
+                $stmt->bindParam(6,$Id_produk);
                 $stmt->execute();
                 return true;
     }
 
 
     public function uploadGambar(){
-        $namaFile = $_FILES['gambar']['name'];
-        $ukuranFile =  $_FILES['gambar']['size'];
-        $error =  $_FILES['gambar']['error'];  
-        $tmp =  $_FILES['gambar']['tmp_name'];  
+        $namaFile = $_FILES['Foto_produk']['name'];
+        $ukuranFile =  $_FILES['Foto_produk']['size'];
+        $error =  $_FILES['Foto_produk']['error'];  
+        $tmp =  $_FILES['Foto_produk']['tmp_name'];  
       
         //cek apakah user sudah menambah gambar
       
@@ -170,9 +187,9 @@ class Burger extends Connect{
     }
 
 
-    public function deleteProduk($id_produk){
+    public function deleteProduk($Id_produk){
         $conn = $this->getConnection();
-        $query = "DELETE FROM produk WHERE id_produk = $id_produk";
+        $query = "DELETE FROM produk WHERE Id_produk = $Id_produk";
         $result = $conn->exec($query);
         return $result;
 }

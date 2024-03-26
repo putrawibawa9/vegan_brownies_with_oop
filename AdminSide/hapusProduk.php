@@ -1,9 +1,11 @@
 <?php
 
-require_once "../functions.php";
+require_once '../classes/classProduk.php';
+
+$burger = new Produk\Produk;
 $Id_produk = $_GET['Id_produk'];
 
-if (hapusProduk($Id_produk)>0){
+if ($burger->deleteProduk($Id_produk)){
     echo "<script>
             alert('data berhasil dihapus');
             document.location.href = 'home.php';

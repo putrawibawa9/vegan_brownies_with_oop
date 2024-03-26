@@ -1,19 +1,10 @@
 <?php
-session_start();
-require_once "../functions.php";
+require_once "../classes/construct.php";
+require_once "../classes/classPesanan.php";
 
+$pesanans = new Pesanan;
 
-$pesanan = query("SELECT *
-FROM pesanan
-JOIN produk ON pesanan.Id_produk = produk.Id_produk
-JOIN pelanggan ON pesanan.Id_pelanggan = pelanggan.Id_pelanggan;
-");
-
-// var_dump($pesanan);
-// exit;
-
-
-
+$pesanan = $pesanans->viewPesanan();
 
 ?>
 <!DOCTYPE html>

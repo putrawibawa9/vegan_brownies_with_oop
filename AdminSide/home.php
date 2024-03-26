@@ -148,7 +148,6 @@ $produk = query("SELECT * FROM produk");
     <div class="container">
                 <a href="order.php" >Lihat Semua Pesanan</a>    
                 <a href="tambahProduk.php">TAMBAH PRODUK</a>
-                <a href="../mobil/index.php">Mobil</a>
     </div>
 
     <footer>

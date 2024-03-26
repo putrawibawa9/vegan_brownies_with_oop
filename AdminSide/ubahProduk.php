@@ -1,30 +1,23 @@
-<?php
-// session_start();
-// if (!isset($_SESSION['login'])){
-//     header("Location: login.php");
-//     exit;
-// }
-require_once "../functions.php";
+<?php 
+    require_once '../classes/classProduk.php';
+?>
 
-//get that $_GET
+<?php
 $Id_produk = $_GET['Id_produk'];
 
-$pdk = query("SELECT * FROM produk WHERE Id_produk= $Id_produk")[0];
 
+$data = new Produk\Produk;
 
-// echo $pdk['Foto_produk'];
-// exit;
+$pdk = $data->viewEachProduk($Id_produk);
 
-
-
-
-//check whether the button has been click or not
+// var_dump($pdk);
 if(isset($_POST['submit'])){
 
-
+    $edit = new Produk\Produk;
+    $result = $edit->editProduk($_POST);
     
     //check the progress
-    if (ubahProduk($_POST)>0){
+    if ($result){
         echo "
             <script>
             alert('data berhasil diubah');
@@ -41,6 +34,7 @@ if(isset($_POST['submit'])){
     }
 
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -121,7 +115,7 @@ if(isset($_POST['submit'])){
 
 <form action="" method="post" enctype="multipart/form-data">
 <input type="hidden" name="Id_produk" value="<?= $pdk['Id_produk']?>">
-<input type="hidden" name="gambarLama" value="<?= $pdk['Foto_produk']?>">
+<input type="hidden" name="Gambar_lama" value="<?= $pdk['Foto_produk']?>">
 <ul>
     <li>
         <label for="Nama_produk">Nama Produk :</label>
@@ -131,11 +125,11 @@ if(isset($_POST['submit'])){
         <label for="Foto_produk">Foto Produk :</label>
         <input type="file" name="Foto_produk" id="nama">
 
-        <img src="img/<?= $pdk['Foto_produk'] ?>" width="100px" height="100px">
+        <img src="../img/<?= $pdk['Foto_produk'] ?>" width="100px" height="100px">
     </li>
     <li>
         <label for="Stok_produk">Stok Produk :</label>
-        <input type="text" name="Stok_produk" id="Stok_produk" required value="<?= $pdk['Stok_produk']; ?>" >
+        <input type="number" name="Stok_produk" id="Stok_produk" required value="<?= $pdk['Stok_produk']; ?>" >
     </li>
     <li>
         <label for="Deskripsi_produk">Deskripsi Produk :</label>
@@ -143,12 +137,12 @@ if(isset($_POST['submit'])){
     </li>
     <li>
         <label for="Harga_produk">Harga Produk :</label>
-        <input type="text" name="Harga_produk" id="Harga_produk" required value="<?= $pdk['Harga_produk']; ?>" >
+        <input type="number" name="Harga_produk" id="Harga_produk" required value="<?= $pdk['Harga_produk']; ?>" >
     </li>
     <button type="submit" name="submit">Post</button>
 </ul>
 
-<a href="../index.php">back</a>
+<a href="home.php">back</a>
 </form>
 
 

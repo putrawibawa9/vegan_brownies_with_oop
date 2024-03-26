@@ -1,16 +1,18 @@
 <?php
 
-require_once "../functions.php";
+require_once '../classes/classPesanan.php';
+
+$pesanan = new Pesanan;
 $Id_pesanan = $_GET['Id_pesanan'];
 
-if (konfirmasiPesanan($Id_pesanan)>0){
+if ($pesanan->konfirmasiPesanan($Id_pesanan)){
     echo "<script>
-            alert('Pesanan telah dikirim ');
+            alert('Berhasil Dikonfirmasi');
             document.location.href = 'order.php';
       </script>";
 }else{
   echo "  <script>
-            alert('Pesanan gagal dikirim');
+            alert('Gagal Dikonfirmasi');
             document.location.href = 'order.php';
             </script>";
 }

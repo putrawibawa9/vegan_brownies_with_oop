@@ -20,6 +20,7 @@ if(isset($_POST['login'])){
 
     $result = $auth->login($Nama_pelanggan, $password);
 
+
 }
 
 ?>
