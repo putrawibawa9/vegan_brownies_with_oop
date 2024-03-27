@@ -110,7 +110,7 @@ footer {
     <table border="1" cellpadding = '10' cellspacing = '0'>
         <tr>
             <th> No </th>
-            <th> Id Produk</th>
+            <th> Stok Produk</th>
             <th> Nama Produk</th>
             <th> Foto Produk </th>
             <th> Deskripsi Produk</th>
@@ -123,7 +123,7 @@ footer {
         <?php foreach($produk as $row): ?>
         <tr>
             <td><?= $i; ?></td>
-            <td><?= $row['Id_produk']; ?></td>
+            <td><?= $row['Stok_produk']; ?></td>
             <td><?= $row['Nama_produk']; ?></td>
             <td><img src="../img/<?= $row['Foto_produk']; ?>" width="100px" height="100px"></td>
             <td><?= $row['Deskripsi_produk']; ?></td>

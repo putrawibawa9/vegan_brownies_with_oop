@@ -92,6 +92,17 @@ $pesanan = query("SELECT * FROM pesanan JOIN produk ON (produk.Id_produk = pesan
             box-sizing: border-box;
             text-align: center;
         }
+
+        a.button {
+            background-color: #ffffff; /* Change button background color to white */
+            color: #739072; /* Change button text color */
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            text-decoration: none; /* Remove underline */
+            display: inline-block;
+            margin-right: 10px; /* Add margin for spacing */
+        }
     </style>
 </head>
 
@@ -117,8 +128,8 @@ $pesanan = query("SELECT * FROM pesanan JOIN produk ON (produk.Id_produk = pesan
         <option value="Bank Mega">Bank Mega</option>
     </select>
     <div>
-    <a href="#" onclick="checkout()">Bayar</a>
-    <a href="#" onclick="return confirm('yakin?');">Batal</a>
+<a href="#" onclick="checkout()" class="button">Bayar</a>
+            <a href="katalog.php" onclick="return confirm('yakin?');" class="button">Batal</a>
 </div>
 <script>
     function checkout() {

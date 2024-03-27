@@ -24,12 +24,12 @@ $pesanan = $pesanans->viewPesanan();
         }
 
         h1, .form {
-            color: #333;
+            color: #f4f4f4;
         }
 
         a {
             text-decoration: none;
-            color: #007BFF;
+            color: #333;
             margin-right: 10px;
             text-align: center;
         }
@@ -47,7 +47,7 @@ $pesanan = $pesanans->viewPesanan();
         }
 
         th {
-            background-color: #333;
+            background-color: #4F6F52;
             color: white;
         }
 
@@ -55,7 +55,7 @@ $pesanan = $pesanans->viewPesanan();
             background-color: #f2f2f2;
         }
         footer {
-            background-color: #333;
+            background-color: #4F6F52;
             color: #fff;
             text-align: center;
             padding: 1em;
@@ -76,6 +76,9 @@ $pesanan = $pesanans->viewPesanan();
     <h1>Vegan Brownies Bites</h1>
         <p>Temukan keindahan dalam Brownies</p>
         <h1 style="color: white;">DAFTAR PESANAN</h1>
+        <ul style="list-style-type: none; padding: 0;">
+    <li style="display: inline; margin-right: 10px;">  <a href="home.php" style="color: white;">Dashboard Produk</a></li>
+    <li style="display: inline; margin-right: 10px;">   <a href="../" style="color: white;">Logout</a></li>
     </header>
 
     <table border="1" cellpadding = '10' cellspacing = '0'>

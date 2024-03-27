@@ -93,8 +93,11 @@ $produk = $produks->readProduk();
  
     <header>
         <h1 style="color: white;">Vegan Brownies Bites</h1>
-        <p>Temukan keindahan dalam Brownies</p>
         <h1 style="color: white;">DAFTAR PRODUK</h1>
+        <ul style="list-style-type: none; padding: 0;">
+    <li style="display: inline; margin-right: 10px;">  <a href="order.php" style="color: white;">Dashboard Pesanan</a></li>
+    <li style="display: inline; margin-right: 10px;">  <a href="tambahProduk.php" style="color: white;">Tambah Produk</a></li>
+    <li style="display: inline; margin-right: 10px;">   <a href="../" style="color: white;">Logout</a></li>
     </header>
 
   
@@ -142,14 +145,7 @@ $produk = $produks->readProduk();
         </tr>
         <?php endforeach; ?>
     </table>
-    
-    <div class="container">
-                <a href="order.php" >Lihat Semua Pesanan</a>    
-                <a href="tambahProduk.php">TAMBAH PRODUK</a>
-    </div>
-
     <footer>
-        <a href="../logout.php">Logout</a>
         <p>Hubungi kami di: info@VeganBrowniesBites.com | Phone: (123) 456-7890</p>
     </footer>
       

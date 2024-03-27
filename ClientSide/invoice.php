@@ -129,7 +129,9 @@ $order = query("SELECT * FROM pesanan JOIN produk ON (produk.Id_produk = pesanan
     
   </div>
   <div id="logout-container" style="text-align: center;">
-  <a href="../logout.php" style="color: white;">Logout</a>
+    <a href="katalog.php" style="color: white;">Back</a>
+    <br>
+    <a href="../logout.php" style="color: white;">Logout</a>
 </div>
 
 </body>

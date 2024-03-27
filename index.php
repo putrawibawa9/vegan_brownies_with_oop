@@ -20,7 +20,10 @@ if(isset($_POST['login'])){
 
     $result = $auth->login($Nama_pelanggan, $password);
 
+}
 
+if (isset($_GET['error']) && $_GET['error'] == 1) {
+    $error = $_GET["error"];
 }
 
 ?>
@@ -99,6 +102,7 @@ if(isset($_POST['login'])){
 </head>
 <body>
 
+
 <div class="login-container">
     <h1>Login Pembeli</h1>
 
@@ -110,11 +114,11 @@ if(isset($_POST['login'])){
         <ul>
             <li>
                 <label for="Nama_pelanggan">Nama Pelanggan :</label>
-                <input type="text" name="Nama_pelanggan" id="Nama_pelanggan">
+                <input type="text" name="Nama_pelanggan" id="Nama_pelanggan" required>
             </li>
             <li>
                 <label for="password">Password :</label>
-                <input type="password" name="password" id="password">
+                <input type="password" name="password" id="password" required>
             </li>
             <li>
                 <button type="submit" name="login">Login</button>

@@ -107,11 +107,11 @@ if (isset($_GET['error']) && $_GET['error'] == 1) {
         <ul>
             <li>
                 <label for="Username">Username:</label>
-                <input type="text" name="Username" id="Username">
+                <input type="text" name="Username" id="Username" required>
             </li>
             <li>
                 <label for="password">Password :</label>
-                <input type="password" name="Password" id="password">
+                <input type="password" name="Password" id="password" required>
             </li>
             <li>
                 <button type="submit" name="login">Login</button>

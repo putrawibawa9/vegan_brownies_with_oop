@@ -133,7 +133,7 @@ if(isset($_POST['submit'])){
     </li>
     <li>
         <label for="Deskripsi_produk">Deskripsi Produk :</label>
-        <input type="text" name="Deskripsi_produk" id="Deskripsi_produk" required value="<?= $pdk['Deskripsi_produk']; ?>" >
+        <input type="textarea" name="Deskripsi_produk" id="Deskripsi_produk" required value="<?= $pdk['Deskripsi_produk']; ?>" >
     </li>
     <li>
         <label for="Harga_produk">Harga Produk :</label>

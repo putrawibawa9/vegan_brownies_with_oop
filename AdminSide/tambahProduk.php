@@ -121,8 +121,7 @@ if(isset($_POST['submit'])){
         <input type="number" name="Stok_produk" id="Stok_produk" required >
     </li>
     <li>
-        <label for="Deskripsi_produk">Deskripsi Produk :</label>
-        <input type="text" name="Deskripsi_produk" id="Deskripsi_produk" required >
+        <textarea id="message" name="Deskripsi_produk" required></textarea>
     </li>
     <li>
         <label for="Harga_produk">Harga Produk :</label>
