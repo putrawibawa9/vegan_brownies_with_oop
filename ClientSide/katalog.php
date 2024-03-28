@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once "../functions.php";
+require_once "../classes/classPesanan.php";
 
 
 $produk = query("SELECT * FROM produk");
@@ -8,8 +9,17 @@ $produk = query("SELECT * FROM produk");
 
 if(isset($_POST['submit'])){
 
+    
     //check the progress
     $hasil_query = tambahPesanan($_POST);
+
+    $minstock = new Pesanan;
+
+    $Jumlah_pesanan = $_POST["Jumlah_pesanan"];
+    $Id_produk = $_POST["Id_produk"];
+
+    $minstock->minStock($Id_produk, $Jumlah_pesanan);
+    
     if ($hasil_query>0){
         echo "
             <script>
@@ -136,6 +146,7 @@ footer {
                     <input type="hidden" value="<?=$_SESSION['Alamat_pelanggan'];?>" name="Alamat_pesanan">
                     <input type="hidden" value="<?= $row['Harga_produk'];?>" name="Total_pesanan">
                     <input type="hidden" value="<?= date('Y-m-d');?>" name="Tgl_pesanan">
+                    <input type="number" name="Jumlah_pesanan">
                     <button name="submit">Pesan</button>
                 </form>
             </td>

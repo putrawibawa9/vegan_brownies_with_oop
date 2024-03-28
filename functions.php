@@ -251,8 +251,23 @@ function tambahPesanan($data) {
   $Alamat_pesanan = $data['Alamat_pesanan'];
   $Total_pesanan = $data['Total_pesanan'];
   $Tgl_pesanan = $data['Tgl_pesanan'];
+  $Jumlah_pesanan = $data['Jumlah_pesanan'];
 
-global $conn;
+  $cekStok = mysqli_query($conn,"SELECT Stok_produk FROM produk WHERE Id_produk = $Id_produk;");
+  $rw = mysqli_fetch_assoc($cekStok);
+  $Stok_produk = $rw ["Stok_produk"];
+
+  if ($Jumlah_pesanan > $Stok_produk) {
+    echo "
+    <script>
+    alert('pesanan melebihi stok');
+    document.location.href = 'katalog.php';
+    </script>
+";
+exit;
+}
+
+
 $result = mysqli_query($conn, 
     "SELECT AUTO_INCREMENT
     FROM information_schema.TABLES
